@@ -3,6 +3,7 @@ const { User } = require('../models/index')
 const {comparePassword} = require('../helpers/bcrypt')
 const { signToken } = require('../helpers/jwt')
 
+
 class Controller {
   static async postLogin(req, res) {
     let { email, password } = req.body
@@ -46,6 +47,21 @@ class Controller {
       res.status(500).json({
         error: err
       })
+    }
+  }
+
+  static async getPhotos(req, res) {
+    try {
+      const photos = await Photo.findAll({
+        where: {
+          UserId: req.userLogin.id
+        }
+      })
+      res.status(200).json({
+        photos
+      })
+    } catch (err) {
+      console.log(err)
     }
   }
 }
