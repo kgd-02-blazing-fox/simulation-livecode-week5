@@ -34,6 +34,7 @@ class controller {
         const token = jwt.sign({email:login.email, id:login.id},process.env.JWT_SECRET)
         // console.log(token)
         // res.json({hallo:token})
+
         res.status(200).json({access_token:token})
 
       }
@@ -43,8 +44,15 @@ class controller {
 
   }
 
-  static photos(req, res, next) {
-
+  static async photos(req, res, next) {
+    try{
+      // const photo = await Photo.findAll({
+      //   where: {}
+      // })
+      console.log(req.headers)
+    }catch (err) {
+      rea.status(500).json({error:err})
+    }
   }
 }
 
