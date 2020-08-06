@@ -1,4 +1,4 @@
-# Hacktiv Gallery
+# Hacktiv Gallery METAL
 
 ## My Gallery
 Buatlah sebuah website untuk menampilkan foto-foto, yang diambil dari API yang akan kalian buat.
