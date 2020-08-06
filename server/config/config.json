@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "2012waiting",
+    "database": "Hacktiv-Gallery",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
