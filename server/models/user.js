@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
+const {hashSync} = require('../helpers/bcrypt')
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -15,12 +18,26 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    email: DataTypes.STRING,
+    email: {
+      type:DataTypes.STRING,
+      validate: {
+        isEmail:{
+          args : true,
+          msg: "Must be in email format"
+        }
+      }
+    },
     password:{
       type:DataTypes.STRING,
       unique: true
     } 
   }, {
+    hooks:{
+      beforeCreate(user){
+        user.password = hashSync(user.password)
+      }
+    }
+  },{
     sequelize,
     modelName: 'User',
   });
